@@ -1,92 +1,118 @@
-/* ***************** DONE BY:- umang sethi***************** */ /* Variable naming convention: <object>_<action>_<objectname>; Example -> Button_click_b1;
-*/
-
-//Variables (BE CAREFUL THESE MIGHT BE USED IN OTHER JS FILES TOO)
-var inp_as=document.getElementById('a_size'),array_size=inp_as.value;
-var inp_gen=document.getElementById("a_generate");
-var inp_aspeed=document.getElementById("a_speed");
-//var array_speed=document.getElementById('a_speed').value;
-
-var butts_algos=document.querySelectorAll(".algos button");
-
-var div_sizes=[];
-var divs=[];
-var margin_size;
-var cont=document.getElementById("array_container");
-cont.style="flex-direction:row";
-
-//Array generation and updation.
-
-inp_gen.addEventListener("click",generate_array);
-inp_as.addEventListener("input",update_array_size);
-
-function generate_array()
-{
-    cont.innerHTML="";
-
-    for(var i=0;i<array_size;i++)
-    {
-        div_sizes[i]=Math.floor(Math.random() * 0.5*(inp_as.max - inp_as.min) ) + 10;
-        divs[i]=document.createElement("div");
-        cont.appendChild(divs[i]);
-        margin_size=0.1;
-        divs[i].style=" margin:0% " + margin_size + "%; background-color:blue; width:" + (100/array_size-(2*margin_size)) + "%; height:" + (div_sizes[i]) + "%;";
-    }
-}
-
-function update_array_size()
-{
-    array_size=inp_as.value;
-    generate_array();
-}
-
-window.onload=update_array_size();
-
-//Running the appropriate algorithm.
-for(var i=0;i<butts_algos.length;i++)
-{
-    butts_algos[i].addEventListener("click",runalgo);
-}
-
-function disable_buttons()
-{
-    for(var i=0;i<butts_algos.length;i++)
-    {
-        butts_algos[i].classList=[];
-        butts_algos[i].classList.add("butt_locked");
-
-        butts_algos[i].disabled=true;
-        inp_as.disabled=true;
-        inp_gen.disabled=true;
-        inp_aspeed.disabled=true;
-    }
-}
-
-function runalgo()
-{
-    disable_buttons();
-
-    this.classList.add("butt_selected");
-    switch(this.innerHTML)
-    {
-        case "Bubble":Bubble();
-                        break;
-        case "Selection":Selection_sort();
-                        break;
-        case "Insertion":Insertion();
-                        break;
-        case "Merge":Merge();
-                        break;
-        case "Quick":Quick();
-                        break;
-        case "Heap":Heap();
-                        break;
-    }
-}
-
-/*
+<!DOCTYPE html>
+<!--
     *****************
-    DONE BY:-   umang sethi
-    
+    DONE BY:-   Umang Sethi
     *****************
-*/
+-->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Visualizer</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="array-inputs">
+                <p>Size of the array:</p>
+                <input id="a_size" type="range" min=20 max=150 step=1 value=80>
+                <p>Speed of the algorithm:</p>
+                <input id="a_speed" type="range" min=1 max=5 step=1 value=4>
+                <button id="a_generate">Generate New Array!</button>
+            </div>
+
+            <div class="header_right">
+                <p class="nav-heading">Sorting visualizer</p>
+
+                <div class="algos">
+                    <button>Bubble</button>
+                    <button>Selection</button>
+                    <button>Insertion</button>
+                    <button>Merge</button>
+                    <button>Quick</button>
+                    <button style="margin-right: 0px;">Heap</button>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+    <section>
+
+        <div id="Info_Cont1">
+
+            <h3>TIME COMPLEXITY</h3>
+
+            <div class="Complexity_Containers" id="Time_Complexity_Types_Container">
+
+                <div class="Pair_Definitions">
+                    <p class="Sub_Heading">Worst case:</p>
+                    <p id="Time_Worst"></p>
+                </div>
+
+                <div class="Pair_Definitions">
+                    <p class="Sub_Heading">Average case:</p>
+                    <p id="Time_Average"></p>
+                </div>
+
+                <div class="Pair_Definitions">
+                    <p class="Sub_Heading">Best case:</p>
+                    <p id="Time_Best"></p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="array_container">
+
+        </div>
+
+        <div id="Info_Cont2">
+
+            <h3>SPACE COMPLEXITY</h3>
+
+            <div class="Complexity_Containers" id="Space_Complexity_Types_Container">
+
+                <div class="Pair_Definitions">
+                    <p class="Sub_Heading">Worst case:</p>
+                    <p id="Space_Worst"></p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <!--This should be at the end of body and should be loaded before sorts.js-->
+    <script src="./scripts/visualizations.js"></script>
+    <!--This should be loaded after main.js-->
+
+    <script src="./scripts/bubble_sort.js"></script>
+    <script src="./scripts/selection_sort.js"></script>
+    <script src="./scripts/insertion_sort.js"></script>
+    <script src="./scripts/merge_sort.js"></script>
+    <script src="./scripts/quick_sort.js"></script>
+    <script src="./scripts/heap_sort.js"></script>
+</body>
+
+<!--
+    *****************
+    DONE BY:-   Umang Sethi
+    *****************
+-->
+
+</html>
