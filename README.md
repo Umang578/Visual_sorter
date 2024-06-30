@@ -9,4 +9,4 @@ Multiple Algorithms: Supports Bubble Sort, Quick Sort, Merge Sort, and more.
 Customization: Users can adjust the size of the array and the sorting speed.
 Real-time Visualization: Watch sorting algorithms in action with animations.
 
-Take a look at live version: https://umang578.github.io/visualproject/
+Take a look at live version: https://umang578.github.io/Visual_sorter/
